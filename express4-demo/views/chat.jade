@@ -1,0 +1,26 @@
+//
+   Created by Administrator on 2015/8/25.
+extends layout
+
+block content
+   h1= title
+   ul(id='message')
+   form(action='')
+      input(id='m' autocomplete='off')
+      button send
+
+   script.
+      var socket = io();
+
+
+
+
+   //div(id="loginbox")
+   //   div(style="width:260px;margin:200px auto;")
+   //      br
+   //      br
+   //      input(type="text" style="width:180px;" placeholder="请输入用户名" id="username" name="username" )
+   //      input(type="button" style="width:50px;" value="提交" onclick="CHAT.usernameSubmit();")
+
+
+

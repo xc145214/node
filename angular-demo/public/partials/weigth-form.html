@@ -1,0 +1,49 @@
+<div>
+    <h3 class="page-header">重量换算表</h3>
+    <table class="table table-bordered ">
+        <caption>重量换算单位</caption>
+        <tbody>
+        <tr>
+            <th>中文</th>
+            <td>吨</td>
+            <td>千克</td>
+            <td>克</td>
+            <td>磅</td>
+            <td>盎司</td>
+            <td>克拉</td>
+        </tr>
+        <tr>
+            <th>英文</th>
+            <td>t</td>
+            <td>kg</td>
+            <td>g</td>
+            <td>lb</td>
+            <td>oz</td>
+            <td>ct</td>
+        </tr>
+        </tbody>
+
+    </table>
+    <form class="form-inline">
+        <div class="form-group">
+            <label >面积：</label>
+            <input type="number" class="form-control" min="0" ng-model="invoice.length" required >
+
+        </div>
+        <div class="form-group">
+            <label >选择单位</label>
+            <select ng-model="invoice.unit" class="form-control">
+                <option ng-repeat="c in invoice.units">{{c}}</option>
+            </select>
+        </div>
+    </form>
+    <div>
+        <b>结果:</b>
+        <table class="table table-bordered " >
+            <tr ng-repeat="c in invoice.units">
+                <td>{{ invoice.total(c) | number:4 }}</td>
+                <td> {{ c }}</td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<% include header.html %>
+<div>
+
+</div>
+<div class="container">
+
+    <h1 class="page-header"><%= title %></h1>
+
+    <p>Welcome to <%= title %></p>
+
+    <!-- Tabs Go Here -->
+    <section ng-controller="TabController as tab">
+        <ul class="nav nav-pills">
+            <li ng-class="{ active:tab.isSet(1) }">
+                <a href ng-click="tab.setTab(1)">长度换算</a>
+            </li>
+            <li ng-class="{ active:tab.isSet(2) }">
+                <a href ng-click="tab.setTab(2)">重量换算</a>
+            </li>
+            <li ng-class="{ active:tab.isSet(3) }">
+                <a href ng-click="tab.setTab(3)">面积换算</a>
+            </li>
+            <li ng-class="{ active:tab.isSet(4) }">
+                <a href ng-click="tab.setTab(4)">体积换算</a>
+            </li>
+        </ul>
+        <!-- 长度换算-->
+        <longth-form ng-show="tab.isSet(1)"></longth-form>
+        <!--重量换算-->
+        <weigth-form ng-show="tab.isSet(2)"></weigth-form>
+        <!--面积换算-->
+        <area-form ng-show="tab.isSet(3)"></area-form>
+        <!--体积换算-->
+        <volume-form ng-show="tab.isSet(4)" ></volume-form>
+    </section>
+
+
+</div>
+<script src="/javascripts/unitConver.js"></script>
+
+
+<% include footer.html %>

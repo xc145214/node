@@ -1,0 +1,51 @@
+<div>
+    <h3 class="page-header">容积换算表</h3>
+    <table class="table table-bordered ">
+        <caption>容积换算单位</caption>
+        <tbody>
+        <tr>
+            <th>中文</th>
+            <td>立方米</td>
+            <td>立方厘米</td>
+            <td>升</td>
+            <td>立方英尺</td>
+            <td>立方英寸</td>
+            <td>立方码</td>
+            <td>英制加仑</td>
+        </tr>
+        <tr>
+            <th>英文</th>
+            <td>cu.m</td>
+            <td>cu.cm</td>
+            <td>l</td>
+            <td>cu.ft</td>
+            <td>sq.in</td>
+            <td>sq.yd</td>
+            <td>uk gal</td>
+        </tr>
+        </tbody>
+
+    </table>
+    <form class="form-inline">
+        <div class="form-group">
+            <label >面积：</label>
+            <input type="number" class="form-control" min="0" ng-model="invoice.length" required >
+
+        </div>
+        <div class="form-group">
+            <label >选择单位</label>
+            <select ng-model="invoice.unit" class="form-control">
+                <option ng-repeat="c in invoice.units">{{c}}</option>
+            </select>
+        </div>
+    </form>
+    <div>
+        <b>结果:</b>
+        <table class="table table-bordered " >
+            <tr ng-repeat="c in invoice.units">
+                <td>{{ invoice.total(c) | number:4 }}</td>
+                <td> {{ c }}</td>
+            </tr>
+        </table>
+    </div>
+</div>

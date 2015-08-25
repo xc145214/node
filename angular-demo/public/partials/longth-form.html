@@ -1,0 +1,53 @@
+<div  >
+    <h3 class="page-header">长度换算表</h3>
+    <table class="table table-bordered ">
+        <caption>长度换算单位</caption>
+        <tbody>
+        <tr>
+            <th>中文</th>
+            <td>公里</td>
+            <td>米</td>
+            <td>厘米</td>
+            <td>英里</td>
+            <td>海里</td>
+            <td>码</td>
+            <td>英尺</td>
+            <td>英寸</td>
+        </tr>
+        <tr>
+            <th>英文</th>
+            <td>km</td>
+            <td>m</td>
+            <td>cm</td>
+            <td>mi</td>
+            <td>kt</td>
+            <td>yd</td>
+            <td>ft</td>
+            <td>it</td>
+        </tr>
+        </tbody>
+
+    </table>
+    <form class="form-inline">
+        <div class="form-group">
+            <label >长度：</label>
+            <input type="number" class="form-control" min="0" ng-model="invoice.length" required >
+
+        </div>
+        <div class="form-group">
+            <label >选择单位</label>
+            <select ng-model="invoice.unit" class="form-control">
+                <option ng-repeat="c in invoice.units">{{c}}</option>
+            </select>
+        </div>
+    </form>
+    <div>
+        <b>结果:</b>
+        <table class="table table-bordered " >
+            <tr ng-repeat="c in invoice.units">
+                <td>{{ invoice.total(c) | number:4 }}</td>
+                <td> {{ c }}</td>
+            </tr>
+        </table>
+    </div>
+</div>

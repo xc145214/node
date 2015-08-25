@@ -1,0 +1,36 @@
+<% include header.html %>
+
+
+<div class="container">
+
+    <h1 class="page-header"><%= title %></h1>
+
+    <p>Welcome to <%= title %></p>
+
+
+    <div >
+        <div ng-controller="TodoListController as todoList">
+            <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
+            [ <a href="" ng-click="todoList.archive()">archive</a> ]
+            <ul class="unstyled">
+                <li ng-repeat="todo in todoList.todos">
+                    <input type="checkbox" ng-model="todo.done">
+                    <span class="done-{{todo.done}}">{{todo.text}}</span>
+                </li>
+            </ul>
+            <form ng-submit="todoList.addTodo()">
+                <input type="text" ng-model="todoList.todoText" size="30"
+                       placeholder="add new todo here">
+                <input class="btn-primary" type="submit" value="add">
+            </form>
+        </div>
+    </div>
+
+    <!--user script-->
+    <script src="/javascripts/todo.js"></script>
+
+    <!--user css-->
+    <link rel="stylesheet" href="/stylesheets/todo.css" />
+</div>
+
+<% include footer.html %>

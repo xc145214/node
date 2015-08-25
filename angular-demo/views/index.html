@@ -1,0 +1,23 @@
+<% include header.html %>
+<div>
+
+</div>
+<div class="container">
+
+    <h1 class="page-header"><%= title %></h1>
+
+    <p>Welcome to <%= title %></p>
+
+    <div ng-controller="MenuController as menu">
+        <div ng-repeat="item in menu.items">
+            <p><a href="{{ item.link }}" class="btn btn-primary">{{item.name}}</a></p>
+        </div>
+
+    </div>
+
+
+</div>
+<script src="/javascripts/menu.js"></script>
+
+
+<% include footer.html %>

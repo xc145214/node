@@ -1,0 +1,53 @@
+<div >
+    <h3 class="page-header">面积换算表</h3>
+    <table class="table table-bordered table-striped">
+        <caption>面积换算单位</caption>
+        <tbody>
+        <tr>
+            <th>中文</th>
+            <td>平方公里</td>
+            <td>公亩</td>
+            <td>平方米</td>
+            <td>平方英尺</td>
+            <td>平方英寸</td>
+            <td>平方英里</td>
+            <td>平方码</td>
+            <td>英亩</td>
+        </tr>
+        <tr>
+            <th>英文</th>
+            <td>sq.km</td>
+            <td>a(are)</td>
+            <td>sq.m</td>
+            <td>sq.ft</td>
+            <td>sq.in</td>
+            <td>sq.mi</td>
+            <td>sq.yd</td>
+            <td>a(acre)</td>
+        </tr>
+        </tbody>
+
+    </table>
+    <form class="form-inline">
+        <div class="form-group">
+            <label >面积：</label>
+            <input type="number" class="form-control" min="0" ng-model="invoice.length" required >
+
+        </div>
+        <div class="form-group">
+            <label >选择单位</label>
+            <select ng-model="invoice.unit" class="form-control">
+                <option ng-repeat="c in invoice.units">{{c}}</option>
+            </select>
+        </div>
+    </form>
+    <div>
+        <b>结果:</b>
+        <table class="table table-bordered table-striped" >
+            <tr ng-repeat="c in invoice.units">
+                <td>{{ invoice.total(c) | number:4 }}</td>
+                <td> {{ c }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
