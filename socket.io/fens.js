@@ -1,36 +1,36 @@
 /**
  * Created by Administrator on 2015/8/25.
  */
-//ÒıÈë°ü
+//å¼•å…¥åŒ…
 var express= require('express');
 var app = require('express')();
 var path = require('path');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-//ÉèÖÃÈÕÖ¾¼¶±ğ
+//è®¾ç½®æ—¥å¿—çº§åˆ«
 io.set('log level',1);
 
 
-//websocket¼àÌı
+//websocketç›‘å¬
 io.on('connection',function(socket){
     socket.emit('open');
 
-    // ´òÓ¡ÎÕÊÖĞÅÏ¢
+    // æ‰“å°æ¡æ‰‹ä¿¡æ¯
     // console.log(socket.handshake);
 
-    // ¹¹Ôì¿Í»§¶Ë¶ÔÏó
+    // æ„é€ å®¢æˆ·ç«¯å¯¹è±¡
     var client = {
         socket:socket,
         name:false,
         color:getColor()
     }
 
-    // ¶ÔmessageÊÂ¼şµÄ¼àÌı
+    // å¯¹messageäº‹ä»¶çš„ç›‘å¬
     socket.on('message', function(msg){
         var obj = {time:getTime(),color:client.color};
 
-        // ÅĞ¶ÏÊÇ²»ÊÇµÚÒ»´ÎÁ¬½Ó£¬ÒÔµÚÒ»ÌõÏûÏ¢×÷ÎªÓÃ»§Ãû
+        // åˆ¤æ–­æ˜¯ä¸æ˜¯ç¬¬ä¸€æ¬¡è¿æ¥ï¼Œä»¥ç¬¬ä¸€æ¡æ¶ˆæ¯ä½œä¸ºç”¨æˆ·å
         if(!client.name){
             client.name = msg;
             obj['text']=client.name;
@@ -38,26 +38,26 @@ io.on('connection',function(socket){
             obj['type']='welcome';
             console.log(client.name + ' login');
 
-            //·µ»Ø»¶Ó­Óï
+            //è¿”å›æ¬¢è¿è¯­
             socket.emit('system',obj);
-            //¹ã²¥ĞÂÓÃ»§ÒÑµÇÂ½
+            //å¹¿æ’­æ–°ç”¨æˆ·å·²ç™»é™†
             socket.broadcast.emit('system',obj);
         }else{
 
-            //Èç¹û²»ÊÇµÚÒ»´ÎµÄÁ¬½Ó£¬Õı³£µÄÁÄÌìÏûÏ¢
+            //å¦‚æœä¸æ˜¯ç¬¬ä¸€æ¬¡çš„è¿æ¥ï¼Œæ­£å¸¸çš„èŠå¤©æ¶ˆæ¯
             obj['text']=msg;
             obj['author']=client.name;
             obj['type']='message';
             console.log(client.name + ' say: ' + msg);
 
-            // ·µ»ØÏûÏ¢£¨¿ÉÒÔÊ¡ÂÔ£©
+            // è¿”å›æ¶ˆæ¯ï¼ˆå¯ä»¥çœç•¥ï¼‰
             socket.emit('message',obj);
-            // ¹ã²¥ÏòÆäËûÓÃ»§·¢ÏûÏ¢
+            // å¹¿æ’­å‘å…¶ä»–ç”¨æˆ·å‘æ¶ˆæ¯
             socket.broadcast.emit('message',obj);
         }
     });
 
-    //¼àÌı³öÍËÊÂ¼ş
+    //ç›‘å¬å‡ºé€€äº‹ä»¶
     socket.on('disconnect', function () {
         var obj = {
             time:getTime(),
@@ -67,7 +67,7 @@ io.on('connection',function(socket){
             type:'disconnect'
         };
 
-        // ¹ã²¥ÓÃ»§ÒÑÍË³ö
+        // å¹¿æ’­ç”¨æˆ·å·²é€€å‡º
         socket.broadcast.emit('system',obj);
         console.log(client.name + 'Disconnect');
     });
@@ -78,7 +78,7 @@ io.on('connection',function(socket){
 app.use(express.static('public'));
 
 
-// Ö¸¶¨webscoketµÄ¿Í»§¶ËµÄhtmlÎÄ¼ş
+// æŒ‡å®šwebscoketçš„å®¢æˆ·ç«¯çš„htmlæ–‡ä»¶
 app.get('/', function (req, res) {
     res.sendFile(__dirname +'/views/fens.html');
 });
